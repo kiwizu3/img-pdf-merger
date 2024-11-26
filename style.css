@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+    font-family: "Poppins", serif !important;
+  }
+
+.custom-file-input {
+    position: relative;
+    display: inline-block;
+    width: 15rem;
+    height: 15rem;
+    padding: 6.5rem 1rem;
+    border-radius: 8rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px 4px #00000024;
+}
+
+.custom-file-input:hover {
+    border-color: #007bff;
+    background-color: #e9ecef;
+}
+
+.custom-file-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-file-input i {
+    font-size: 2rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.custom-file-input:hover i {
+    color: #007bff;
+}
+
+.custom-file-input span {
+    display: block;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.custom-file-input:hover span {
+    color: #007bff;
+}
+
+.title-merger{
+    letter-spacing: -0.07rem;
+    line-height: 1.4rem;
+}

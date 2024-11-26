@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PDF Converter</title>
+</head>
+<body>
+    <h1>Image to PDF Converter</h1>
+    <form id="upload-form" action="/merge" method="post" enctype="multipart/form-data">
+        <label for="images">Upload Images:</label>
+        <input type="file" id="images" name="images" accept=".jpg" multiple required>
+        <br><br>
+        <button type="submit">Merge to PDF</button>
+    </form>
+
+    <div id="result" style="display: none; margin-top: 20px;">
+        <h3>PDF Created!</h3>
+        <a id="download-link" href="#" download>Download PDF</a>
+    </div>
+</body>
+<script>
+    const form = document.getElementById('upload-form');
+    const resultDiv = document.getElementById('result');
+    const downloadLink = document.getElementById('download-link');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        const formData = new FormData(form);
+        const response = await fetch('/merge', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            const { pdf_url } = await response.json();
+            resultDiv.style.display = 'block';
+            downloadLink.href = pdf_url;
+        } else {
+            alert('Failed to create PDF. Please try again.');
+        }
+    });
+</script>
+</html>

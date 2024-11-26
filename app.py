@@ -5,7 +5,7 @@ import os
 import uuid
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 UPLOAD_FOLDER = 'uploads'
 OUTPUT_FOLDER = 'output'
@@ -33,9 +33,16 @@ def merge_images_to_pdf():
 
     pdf_filename = f"{uuid.uuid4().hex}.pdf"
     pdf_path = os.path.join(OUTPUT_FOLDER, pdf_filename)
-
     images[0].save(pdf_path, save_all=True, append_images=images[1:])
-    return jsonify({'pdf_url': f'/download/{pdf_filename}'})
+    
+    pdf_path = os.path.join('pdfs', 'merged.pdf')
+    pdf_url = request.url_root + pdf_path
+    app.logger.info(f"PDF URL generated: {pdf_url}")  
+    return jsonify({'pdf_url': pdf_url})
+
+  
+    # return jsonify({'pdf_url': f'/download/{pdf_filename}'})
+
 
 @app.route('/download/<filename>')
 def download_file(filename):
@@ -43,3 +50,4 @@ def download_file(filename):
 
 if __name__ == '__main__':
     app.run(debug=True)
+

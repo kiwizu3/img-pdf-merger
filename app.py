@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from PIL import Image
 import os
 import uuid
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 UPLOAD_FOLDER = 'uploads'
 OUTPUT_FOLDER = 'output'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
